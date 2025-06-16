@@ -1,0 +1,9 @@
+{
+  "properties": {
+    "displayName": "pp-test-product",
+    "description": "pp-test-product",
+    "approvalRequired": false,
+    "state": "published",
+    "subscriptionRequired": true
+  }
+}
