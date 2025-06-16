@@ -1,0 +1,6 @@
+apimServiceName: apim-poc-qa-public
+namedValues:
+loggers:
+diagnostics:
+backends:
+apis:
