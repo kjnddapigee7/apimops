@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "path": "v1",
+    "apiRevision": "1",
+    "authenticationSettings": {},
+    "description": "",
+    "isCurrent": true,
+    "displayName": "pp-test-api",
+    "protocols": [
+      "https"
+    ],
+    "subscriptionKeyParameterNames": {
+      "header": "apim-key",
+      "query": "subscription-key"
+    },
+    "subscriptionRequired": true
+  }
+}
