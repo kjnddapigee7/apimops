@@ -9,6 +9,7 @@ paths:
   /json:
     get:
       summary: Get
+      description: Get
       operationId: get
       responses:
         '200':

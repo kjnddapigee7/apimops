@@ -1,0 +1,16 @@
+{
+  "properties": {
+    "credentials": {
+      "header": {},
+      "query": {}
+    },
+    "description": "HttpBin-Backend Description.",
+    "protocol": "http",
+    "tls": {
+      "validateCertificateChain": true,
+      "validateCertificateName": true
+    },
+    "type": "Single",
+    "url": "https://httpbin.org"
+  }
+}

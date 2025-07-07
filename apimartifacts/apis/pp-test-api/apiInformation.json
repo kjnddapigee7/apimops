@@ -9,6 +9,7 @@
     "protocols": [
       "https"
     ],
+    "serviceUrl": "https://apim-poc-dev-public.azure-api.net/v1",
     "subscriptionKeyParameterNames": {
       "header": "apim-key",
       "query": "subscription-key"

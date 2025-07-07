@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "az-tenant-id",
+    "secret": false,
+    "tags": [],
+    "value": "ce37ee93-618b-49d7-8691-a5b88f9eb5e2"
+  }
+}

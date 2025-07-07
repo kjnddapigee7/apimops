@@ -1,0 +1,28 @@
+openapi: 3.0.1
+info:
+  title: test-jwt-validation
+  description: ''
+  version: '1.0'
+servers:
+  - url: https://apim-poc-dev-public.azure-api.net/testjwt
+paths:
+  /:
+    get:
+      summary: all
+      operationId: all
+      responses:
+        '200':
+          description: ''
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

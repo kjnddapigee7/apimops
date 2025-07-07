@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "loggerType": "azureEventHub",
+    "credentials": {
+      "name": "apim-test-eventhub/apim-eventhub-log",
+      "connectionString": "{{Logger-Credentials--685d1db2217d201a74eb379e}}"
+    },
+    "description": "adding a new logger",
+    "isBuffered": true
+  }
+}

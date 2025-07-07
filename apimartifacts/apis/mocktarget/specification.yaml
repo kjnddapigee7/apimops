@@ -5,7 +5,14 @@ info:
   version: '1.0'
 servers:
   - url: https://apim-poc-dev-public.azure-api.net/mocktarget
-paths: { }
+paths:
+  /*:
+    get:
+      summary: all
+      operationId: all
+      responses:
+        '200':
+          description: ''
 components:
   securitySchemes:
     apiKeyHeader:

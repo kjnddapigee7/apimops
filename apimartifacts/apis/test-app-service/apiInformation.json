@@ -1,0 +1,19 @@
+{
+  "properties": {
+    "path": "testappservice",
+    "apiRevision": "1",
+    "authenticationSettings": {},
+    "description": "",
+    "isCurrent": true,
+    "displayName": "test-app-service",
+    "protocols": [
+      "https"
+    ],
+    "serviceUrl": "https://node-app-poc-dcbrbagefehzgvgk.centralus-01.azurewebsites.net",
+    "subscriptionKeyParameterNames": {
+      "header": "Ocp-Apim-Subscription-Key",
+      "query": "subscription-key"
+    },
+    "subscriptionRequired": true
+  }
+}

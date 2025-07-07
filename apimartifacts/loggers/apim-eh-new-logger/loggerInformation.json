@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "loggerType": "azureEventHub",
+    "credentials": {
+      "endpointAddress": "apim-eh-ns.servicebus.windows.net",
+      "identityClientId": "{{6859a913217d200c40c66a90}}",
+      "name": "apim-eh-new"
+    },
+    "description": "Event Hub logger with system-assigned managed identity",
+    "isBuffered": true
+  }
+}
