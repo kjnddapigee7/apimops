@@ -1,24 +1,390 @@
-<!--
-    IMPORTANT:
-    - Policy fragment are included as-is whenever they are referenced.
-    - If using variables. Ensure they are setup before use.
-    - Copy and paste your code here or simply start coding
--->
 <fragment>
 	<choose>
-		<when condition="@(context.Response.StatusCode == 404)">
+		<when condition="@(context.Response.StatusCode == 401 && context.LastError.Reason == "IncorrectCName")">
 			<return-response>
-				<set-status code="404" reason="Resource Not Found" />
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+         var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "Client not authorized - Invalid CName",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && context.LastError.Reason == "Invalid JWT.")">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+         var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "Invalid JWT value is given",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && context.LastError.Reason == "SubscriptionKeyNotFound")">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+         var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "Access denied due to missing Subscription Key or API Key",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && context.LastError.Reason == "FailedToResolveAPIKey")">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+         var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "API Key Value missing",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && context.LastError.Reason == "access_token_expired")">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "The access token is expired.",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && context.LastError.Reason == "InvalidApiKey")">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "Invalid API Key Value",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && context.LastError.Reason == "InvalidApiKeyForGivenResource")">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "Invalid API Key Value for given resource",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && context.LastError.Reason == "InvalidAPICallAsNoApiProductMatchFound")">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "InvalidAPICall, Since there is NoApiProductMatchFound",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && (context.LastError.Reason == "InvalidAccessToken" || context.LastError.Reason == "invalid_access_token"))">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "Missing/Invalid Access Token",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && (context.LastError.Reason == "JWTDecodingFailed" || context.LastError.Reason == "InvalidToken"))">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "Missing/Invalid Bearer Token",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && context.LastError.Reason == "TokenExpired")">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "JWT Token expired",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 401 && (context.LastError.Reason == "NoMatchingPublicKey" || context.LastError.Reason == "InvalidClaim"))">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          var msg = context.LastError.Message ?? "Invalid claim or no matching key.";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = msg,
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<!-- 403 Forbidden -->
+		<when condition="@(context.Response.StatusCode == 403 && context.LastError.Reason == "FailedIPWhitelisting")">
+			<return-response>
+				<set-status code="403" reason="Forbidden" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "403",
+            errorReason = "Forbidden",
+            errorDescription = "Access denied for this source",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 403 && context.LastError.Reason == "InsufficientScope")">
+			<return-response>
+				<set-status code="403" reason="Forbidden" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "403",
+            errorReason = "Forbidden",
+            errorDescription = "You are not authorized to access this resource.",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<!-- 400 Bad Request -->
+		<when condition="@(context.Response.StatusCode == 400 && context.LastError.Reason == "UnresolvedVariable")">
+			<return-response>
+				<set-status code="400" reason="Bad Request" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "400",
+            errorReason = "Bad Request",
+            errorDescription = "Invalid or missing parameters in request",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<!-- 404 Not Found -->
+		<when condition="@(context.Response.StatusCode == 404 && context.LastError.Reason == "OperationNotFound")">
+			<return-response>
+				<set-status code="404" reason="Not Found" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "404",
+            errorReason = "Not Found",
+            errorDescription = "Could not find resource",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<!-- 429 Too Many Requests -->
+		<when condition="@(context.Response.StatusCode == 429)">
+			<return-response>
+				<set-status code="429" reason="Quota Violation" />
 				<set-header name="Content-Type" exists-action="override">
 					<value>application/json</value>
 				</set-header>
 				<set-body>
-                    {
-                        "errorCode" : "404",
-                        "erorReason" : "Resouce not found or incorrect ",
-                        "errorDescription": "Resouce not found or incorrect url"
-                        }
+                    @{
+                        var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+                        return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+                           errorCode = "429",
+                            errorReason = "Quota Violation",
+                            errorDescription = "Requests limit exceeded",
+                            errorSource = errorSource
+                        });
+                    }
                 </set-body>
+			</return-response>
+		</when>
+		<!-- 400 Execution or Threat Errors -->
+		<when condition="@(context.Response.StatusCode == 400 && (context.LastError.Reason == "ThreatDetected" || context.LastError.Reason == "ExecutionFailed"))">
+			<return-response>
+				<set-status code="400" reason="Bad Request" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          var msg = context.LastError.Message ?? "Policy or threat execution failure.";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "400",
+            errorReason = "Bad Request",
+            errorDescription = msg,
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<!-- 401 HMAC Verification -->
+		<when condition="@(context.Response.StatusCode == 401 && context.LastError.Reason == "HmacVerificationFailed")">
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "401",
+            errorReason = "Unauthorized",
+            errorDescription = "HMAC Verification Failed",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<!-- 500 Internal Server Error -->
+		<when condition="@(context.Response.StatusCode == 500 && context.LastError.Reason == "EmptySecretKey")">
+			<return-response>
+				<set-status code="500" reason="Bad Request" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "500",
+            errorReason = "Bad Request",
+            errorDescription = "HMAC Secret key is not configured or missing",
+            errorSource = errorSource
+          });
+        }</set-body>
+			</return-response>
+		</when>
+		<when condition="@(context.Response.StatusCode == 500 && context.LastError.Reason == "BackendConnectionFailure")">
+			<return-response>
+				<set-status code="503" reason="BackendConnectionFailure" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+      var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+      return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+        errorCode = "504",
+        errorReason = "BackendConnectionFailure",
+        errorDescription =  "Target host unreachable",
+        errorSource = errorSource
+      });
+    }</set-body>
+			</return-response>
+		</when>
+		<!-- Default fallback -->
+		<when condition="@(context.LastError != null)">
+			<return-response>
+				<set-status code="400" reason="Bad gateway" />
+				<set-header name="Content-Type">
+					<value>application/json</value>
+				</set-header>
+				<set-body>@{
+          var errorSource = context.LastError != null ? context.LastError.Section : "Unknown";
+          var msg = context.LastError.Message ?? "Invalid or incorrect API request";
+          return Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            errorCode = "400",
+            errorReason = "Bad Request",
+            errorDescription = msg,
+            errorSource = errorSource
+          });
+        }</set-body>
 			</return-response>
 		</when>
 	</choose>

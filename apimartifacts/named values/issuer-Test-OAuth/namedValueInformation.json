@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "issuer-Test-OAuth",
+    "secret": false,
+    "tags": [],
+    "value": "https://sts.windows.net/ce37ee93-618b-49d7-8691-a5b88f9eb5e2/"
+  }
+}

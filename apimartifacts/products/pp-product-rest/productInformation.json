@@ -1,0 +1,9 @@
+{
+  "properties": {
+    "displayName": "pp-product-restapi",
+    "description": "Product created using REST API",
+    "approvalRequired": false,
+    "state": "published",
+    "subscriptionRequired": true
+  }
+}

@@ -1,0 +1,111 @@
+<fragment>
+	<choose>
+		<!-- Check for Bearer Token (OAuth) -->
+		<when condition="@( ((string)context.Variables["sourceauth"] == "oauth") )">
+			<validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized" require-scheme="Bearer">
+				<openid-config url="https://login.microsoftonline.com/{{az-tenant-id}}/v2.0/.well-known/openid-configuration" />
+				<audiences>
+					<audience>@((string)context.Variables["oauth-audience"])</audience>
+				</audiences>
+				<issuers>
+					<issuer>@((string)context.Variables["oauth-issuer"])</issuer>
+				</issuers>
+				<required-claims>
+					<claim name="roles" match="all">
+						<value>@((string)context.Variables["oauth-role"])</value>
+					</claim>
+				</required-claims>
+			</validate-jwt>
+		</when>
+		<!-- Check for Bearer Token (JWT) -->
+		<when condition="@( ((string)context.Variables["sourceauth"] == "jwt"))">
+			<validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized" require-expiration-time="true" require-scheme="Bearer" require-signed-tokens="true">
+				<issuer-signing-keys>
+					<key certificate-id="jwtvalidationcert" />
+				</issuer-signing-keys>
+				<audiences>
+					<audience>@((string)context.Variables["jwt-audience"])</audience>
+				</audiences>
+				<required-claims>
+					<claim name="roles" match="all">
+						<value>@((string)context.Variables["jwt-role"])</value>
+					</claim>
+				</required-claims>
+			</validate-jwt>
+		</when>
+		<!-- Check for Basic Authentication -->
+		<when condition="@((string)context.Variables["sourceauth"] == "basicauth")">
+			<!-- Basic Auth logic here -->
+			<set-variable name="authHeader" value="@(context.Request.Headers.GetValueOrDefault("Authorization", ""))" />
+			<!-- Remove "Basic " prefix and decode Base64 -->
+			<set-variable name="encodedCredentials" value="@{
+                var header = (string)context.Variables.GetValueOrDefault("authHeader", "");
+                return header.Length > 6 ? header.Substring(6) : "";
+            }" />
+			<set-variable name="decodedCredentials" value="@{
+                var bytes = System.Convert.FromBase64String((string)context.Variables["encodedCredentials"]);
+                return System.Text.Encoding.UTF8.GetString(bytes);
+            }" />
+			<!-- Split into username and password -->
+			<set-variable name="username" value="@{
+                var creds = (string)context.Variables["decodedCredentials"];
+                return creds.Split(':')[0];
+            }" />
+			<set-variable name="password" value="@{
+                var creds = (string)context.Variables["decodedCredentials"];
+                return creds.Split(':').Length > 1 ? creds.Split(':')[1] : "";
+            }" />
+			<!-- Compare against Named Values -->
+			<set-variable name="validUsername" value="@((string)context.Variables["basicauth-username"])" />
+			<set-variable name="validPassword" value="@((string)context.Variables["basicauth-password"])" />
+			<choose>
+				<when condition="@(
+                    ((string)context.Variables["username"] == (string)context.Variables["validUsername"]) &&
+                    ((string)context.Variables["password"] == (string)context.Variables["validPassword"])
+                )">
+					<!-- Authorized - continue processing -->
+				</when>
+				<otherwise>
+					<return-response>
+						<set-status code="401" reason="Unauthorized" />
+					</return-response>
+				</otherwise>
+			</choose>
+		</when>
+		<!-- Check for HMAC Signature -->
+		<when condition="@((string)context.Variables["sourceauth"] == "hmac")">
+			<!-- HMAC validation logic here -->
+			<!-- Configuration -->
+			<set-variable name="requestBody" value="@{ return context.Request.Body.As<string>(preserveContent: true);}" />
+			<set-variable name="secretKey" value="@((string)context.Variables["hmac-secret-key"])" />
+			<!-- Get signature from client -->
+			<set-variable name="clientSignature" value="@(context.Request.Headers.GetValueOrDefault("X-Signature", ""))" />
+			<set-variable name="stringToSign" value="@{
+                return (string)context.Variables["requestBody"];
+            }" />
+			<!-- Generate HMAC SHA256 signature -->
+			<set-variable name="computedSignature" value="@{
+                var secretBytes = System.Text.Encoding.UTF8.GetBytes((string)context.Variables["secretKey"]);
+                var payloadBytes = System.Text.Encoding.UTF8.GetBytes((string)context.Variables["stringToSign"]);
+                using (var hmac = new System.Security.Cryptography.HMACSHA256(secretBytes))
+                {
+                    var hash = hmac.ComputeHash(payloadBytes);
+                    return System.Convert.ToBase64String(hash);
+                }
+            }" />
+			<choose>
+				<when condition="@((string)context.Variables["clientSignature"] != (string)context.Variables["computedSignature"])">
+					<return-response>
+						<set-status code="401" reason="Invalid HMAC Signature" />
+					</return-response>
+				</when>
+			</choose>
+		</when>
+		<!-- Catch-all: No valid authentication method provided -->
+		<!-- <otherwise>
+            <return-response>
+                <set-status code="401" reason="Unauthorized." />
+            </return-response>
+        </otherwise> -->
+	</choose>
+</fragment>

@@ -1,0 +1,5 @@
+{
+  "properties": {
+    "description": "This Policy Fragment is used to safe guard the APIs from threats injected via Regex, false JSON and false XML."
+  }
+}

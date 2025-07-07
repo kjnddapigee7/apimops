@@ -1,0 +1,15 @@
+{
+  "properties": {
+    "credentials": {
+      "header": {}
+    },
+    "description": "app-service-poc",
+    "protocol": "http",
+    "resourceId": "https://management.azure.com/subscriptions/123a1fd9-8bf4-4a98-9cc2-471642cb8682/resourceGroups/apim-rg/providers/Microsoft.Web/sites/app-service-poc",
+    "tls": {
+      "validateCertificateChain": true,
+      "validateCertificateName": true
+    },
+    "url": "https://app-service-poc-g5ghbaapc9fjhuh8.centralus-01.azurewebsites.net"
+  }
+}
