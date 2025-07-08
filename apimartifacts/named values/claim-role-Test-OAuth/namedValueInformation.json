@@ -1,8 +1,0 @@
-{
-  "properties": {
-    "displayName": "claim-role-Test-OAuth",
-    "secret": false,
-    "tags": [],
-    "value": "Test-OAuth.test"
-  }
-}

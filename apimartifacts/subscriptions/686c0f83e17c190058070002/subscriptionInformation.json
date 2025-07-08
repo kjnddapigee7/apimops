@@ -1,8 +1,0 @@
-{
-  "properties": {
-    "scope": "/subscriptions/123a1fd9-8bf4-4a98-9cc2-471642cb8682/resourceGroups/apim-rg/providers/Microsoft.ApiManagement/service/apim-poc-qa-public/products/unlimited",
-    "allowTracing": false,
-    "ownerId": "/subscriptions/123a1fd9-8bf4-4a98-9cc2-471642cb8682/resourceGroups/apim-rg/providers/Microsoft.ApiManagement/service/apim-poc-qa-public/users/1",
-    "state": "active"
-  }
-}
