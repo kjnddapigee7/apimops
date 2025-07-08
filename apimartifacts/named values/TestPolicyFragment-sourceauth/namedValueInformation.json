@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "TestPolicyFragment-sourceauth",
+    "secret": false,
+    "tags": [],
+    "value": "hmac"
+  }
+}
