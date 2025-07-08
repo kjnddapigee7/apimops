@@ -1,7 +1,0 @@
-{
-  "properties": {
-    "displayName": "oauth-clientSecret",
-    "secret": true,
-    "tags": []
-  }
-}

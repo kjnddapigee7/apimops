@@ -1,8 +1,0 @@
-{
-  "properties": {
-    "displayName": "TestPolicyFragment-hmac-secret-key",
-    "secret": false,
-    "tags": [],
-    "value": "secret1234"
-  }
-}

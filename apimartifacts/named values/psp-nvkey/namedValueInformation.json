@@ -1,7 +1,0 @@
-{
-  "properties": {
-    "displayName": "psp-key",
-    "secret": false,
-    "value": "psp-value"
-  }
-}

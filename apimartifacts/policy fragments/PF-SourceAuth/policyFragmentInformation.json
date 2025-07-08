@@ -1,5 +1,0 @@
-{
-  "properties": {
-    "description": "This Policy Fragment is used to authenticate client requests coming to APIM."
-  }
-}
