@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "description": "pp-rest-backendapi",
+    "protocol": "http",
+    "tls": {
+      "validateCertificateChain": true,
+      "validateCertificateName": true
+    },
+    "url": "https://mocktarget.apigee.net/json"
+  }
+}

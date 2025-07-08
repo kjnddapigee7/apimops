@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "TestPolicyFragment-basicauth-username",
+    "secret": false,
+    "tags": [],
+    "value": "testuser"
+  }
+}
