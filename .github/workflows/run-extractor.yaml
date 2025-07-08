@@ -48,6 +48,9 @@ jobs:
           $InformationPreference = "Continue"
 
           Write-Information "Setting name variables... ${{ secrets.API_MANAGEMENT_SERVICE_NAME }} "
+          echo ${{secrets.API_MANAGEMENT_SERVICE_NAME}} | sed 's/./& /g'
+           Write-Information "${{ secrets.API_MANAGEMENT_SERVICE_NAME }} | sed 's/./& /g' "
+           
           Write-Information ${{ secrets.API_MANAGEMENT_SERVICE_NAME }}
           Write-Information "Setting name variables..."
           $releaseFileName = "extractor-linux-x64.zip"
