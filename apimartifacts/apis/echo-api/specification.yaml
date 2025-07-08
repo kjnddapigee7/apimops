@@ -3,7 +3,7 @@ info:
   title: Echo API
   version: '1.0'
 servers:
-  - url: https://apim-poc-dev-public.azure-api.net/echo
+  - url: https://apim-poc-qa-public.azure-api.net/echo
 paths:
   /resource:
     get:
