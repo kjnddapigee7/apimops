@@ -47,6 +47,8 @@ jobs:
           $VerbosePreference = "Continue"
           $InformationPreference = "Continue"
 
+          Write-Information "Setting name variables... ${{ secrets.API_MANAGEMENT_SERVICE_NAME }} "
+          Write-Information ${{ secrets.API_MANAGEMENT_SERVICE_NAME }}
           Write-Information "Setting name variables..."
           $releaseFileName = "extractor-linux-x64.zip"
           $executableFileName = "extractor"
