@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "audience-map",
+    "secret": false,
+    "tags": [],
+    "value": "{\n \u0022Test-OAuth\u0022 : \u0022api://e782db99-3acc-4342-b037-8f3a15f724cd\u0022\n}"
+  }
+}

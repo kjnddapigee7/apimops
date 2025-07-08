@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "audience-Test-OAuth",
+    "secret": false,
+    "tags": [],
+    "value": "api://e782db99-3acc-4342-b037-8f3a15f724cd"
+  }
+}
