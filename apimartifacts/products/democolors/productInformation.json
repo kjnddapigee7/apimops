@@ -1,0 +1,10 @@
+{
+  "properties": {
+    "displayName": "DemoColors",
+    "description": "Demo Colors",
+    "approvalRequired": false,
+    "state": "published",
+    "subscriptionRequired": true,
+    "subscriptionsLimit": 2
+  }
+}

@@ -1,0 +1,34 @@
+openapi: 3.0.1
+info:
+  title: sampleapi
+  version: '1.0'
+servers:
+  - url: https://azure-apim-kt.azure-api.net/sample
+paths:
+  /json:
+    get:
+      summary: simple op
+      operationId: simple-op
+      responses:
+        '200':
+          description: ''
+  /xml:
+    get:
+      summary: simplexml
+      operationId: simplexml
+      responses:
+        '200':
+          description: ''
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: sub-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

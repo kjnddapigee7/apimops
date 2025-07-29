@@ -1,0 +1,42 @@
+{
+  "properties": {
+    "loggerId": "/subscriptions/b70ea25b-c483-4579-9bae-cb5997d924f7/resourceGroups/azure-apim-rg/providers/Microsoft.ApiManagement/service/azure-apim-kt/loggers/apim-application-insights",
+    "alwaysLog": "allErrors",
+    "backend": {
+      "request": {
+        "body": {
+          "bytes": 0
+        },
+        "headers": []
+      },
+      "response": {
+        "body": {
+          "bytes": 0
+        },
+        "headers": []
+      }
+    },
+    "frontend": {
+      "request": {
+        "body": {
+          "bytes": 0
+        },
+        "headers": []
+      },
+      "response": {
+        "body": {
+          "bytes": 0
+        },
+        "headers": []
+      }
+    },
+    "httpCorrelationProtocol": "W3C",
+    "logClientIp": true,
+    "metrics": true,
+    "sampling": {
+      "percentage": 100,
+      "samplingType": "fixed"
+    },
+    "verbosity": "verbose"
+  }
+}

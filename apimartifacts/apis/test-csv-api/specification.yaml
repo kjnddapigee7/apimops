@@ -1,0 +1,27 @@
+openapi: 3.0.1
+info:
+  title: test-csv-api
+  version: '1.0'
+servers:
+  - url: https://azure-apim-kt.azure-api.net/api
+paths:
+  /json:
+    post:
+      summary: get data
+      operationId: get-data
+      responses:
+        '200':
+          description: ''
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

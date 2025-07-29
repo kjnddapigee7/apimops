@@ -1,0 +1,34 @@
+<fragment>
+	<set-variable name="headerValues" value="{{HeaderValue}}" />
+	<set-variable name="incoming" value="@(context.Request.Headers.GetValueOrDefault("X-Custom-Header", string.Empty))" />
+	<set-variable name="isHeaderValid" value="@{
+        var income = ((string)context.Variables["incoming"]).Split(',').Select(x => x.Trim()).Where(x=> !string.IsNullOrEmpty(x)).ToList();
+    var authorized = ((string)context.Variables["headerValues"]).Split(',').Select(x => x.Trim()).Where(x=> !string.IsNullOrEmpty(x)).ToList();
+     var isValid = income.All(val=> authorized.Contains(val));
+     //context.Trace("HeaderValidation", $"X-Custom-Header validation Result: {(isValid ? "PASS" : "FAIL")}.Incoming=[{string.Join(",",income)}], Allowed=[{string.Join(",",authorized)}]");
+     //context.Trace("HeaderValidation", "'X-Custom-Header' validation result: " + (isValid ? "PASS" : "FAIL")+ ".Incoming=["+ string.Join(",", income) + "], //Allowed=["+ string.Join(",", authorized)+"]");
+     return isValid;
+     }" />
+	<trace source="HeaderValidationPolicy" severity="information">
+		<message>@($"Validation result for 'X-Custom-Header': {(bool)context.Variables["isHeaderValid"]}")</message>
+		<metadata name="IncomingHeader" value="@((string)context.Request.Headers.GetValueOrDefault("X-Custom-Header",""))" />
+		<metadata name="AuthroizationValues" value="{{HeaderValue}}" />
+	</trace>
+	<choose>
+		<when condition="@(context.Variables.GetValueOrDefault("isHeaderValid", false))">
+		</when>
+		<otherwise>
+			<trace source="HeaderValidationPolicy" severity="error">
+				<message>Unauthorized: header validation failed.</message>
+			</trace>
+			<return-response>
+				<set-status code="401" reason="Unauthorized" />
+				<set-header name="Content-Type" exists-action="override">
+					<value>application/json</value>
+				</set-header>
+				<set-body>{"error": unauthorized. header values}
+                    </set-body>
+			</return-response>
+		</otherwise>
+	</choose>
+</fragment>

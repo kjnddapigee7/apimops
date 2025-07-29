@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "ktsubscription",
+    "scope": "/subscriptions/b70ea25b-c483-4579-9bae-cb5997d924f7/resourceGroups/azure-apim-rg/providers/Microsoft.ApiManagement/service/azure-apim-kt/apis/swagger-petstore-openapi-3-0",
+    "allowTracing": false,
+    "state": "active"
+  }
+}

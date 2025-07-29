@@ -1,0 +1,15 @@
+{
+  "properties": {
+    "credentials": {
+      "header": {
+        "x-functions-key": [
+          "{{demo-function-apim-key}}"
+        ]
+      }
+    },
+    "description": "demo-function-apim",
+    "protocol": "http",
+    "resourceId": "https://management.azure.com/subscriptions/b70ea25b-c483-4579-9bae-cb5997d924f7/resourceGroups/azure-apim-rg/providers/Microsoft.Web/sites/demo-function-apim",
+    "url": "https://demo-function-apim-dnaqbwgmc2grfvbt.canadacentral-01.azurewebsites.net/api"
+  }
+}

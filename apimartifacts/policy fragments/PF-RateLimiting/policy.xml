@@ -1,0 +1,3 @@
+<fragment>
+	<rate-limit calls="2" renewal-period="15" remaining-calls-variable-name="remainingCallsPerSubscription" />
+</fragment>

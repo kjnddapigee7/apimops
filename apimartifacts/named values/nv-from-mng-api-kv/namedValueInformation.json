@@ -1,0 +1,9 @@
+{
+  "properties": {
+    "displayName": "nv-from-mng-api-kv",
+    "keyVault": {
+      "secretIdentifier": "https://apim-poc-test-kv.vault.azure.net/secrets/test-client-id/9727db2f81374da99c1f15bbe2afcc73"
+    },
+    "secret": true
+  }
+}

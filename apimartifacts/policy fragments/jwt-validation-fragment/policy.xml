@@ -1,0 +1,16 @@
+<!--
+    IMPORTANT:
+    - Policy fragment are included as-is whenever they are referenced.
+    - If using variables. Ensure they are setup before use.
+    - Copy and paste your code here or simply start coding
+-->
+<fragment>
+	<validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
+		<openid-config url="https://login.microsoftonline.com/e11fb376-aa1c-4f31-948e-422f7898d46f/v2.0/.well-known/openid-configuration" />
+		<required-claims>
+			<claim name="aud">
+				<value>e26b8808-7d25-43a3-99cc-5ece7d21a797</value>
+			</claim>
+		</required-claims>
+	</validate-jwt>
+</fragment>

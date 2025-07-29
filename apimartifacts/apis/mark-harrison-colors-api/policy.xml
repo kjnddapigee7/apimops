@@ -1,0 +1,39 @@
+<!--
+    - Policies are applied in the order they appear.
+    - Position <base/> inside a section to inherit policies from the outer scope.
+    - Comments within policies are not preserved.
+-->
+<!-- Add policies as children to the <inbound>, <outbound>, <backend>, and <on-error> elements -->
+<policies>
+	<!-- Throttle, authorize, validate, cache, or transform the requests -->
+	<inbound>
+		<base />
+		<!--<include-fragment fragment-id="jwt-validation-fragment" />-->
+		<include-fragment fragment-id="HeaderFragment" />
+		<trace source="Tracing Headers" severity="information">
+			<message>Demo</message>
+			<metadata name="RequestHeaders" value="@{
+        var headers = context.Request.Headers;
+        var result= string.Join("|", headers.Select(h=> h.Key + ':' +string.Join(",",  h.Value)));
+       return result;
+ 
+        }" />
+		</trace>
+		<include-fragment fragment-id="PF-RateLimiting" />
+	</inbound>
+	<!-- Control if and how the requests are forwarded to services  -->
+	<backend>
+		<base />
+	</backend>
+	<!-- Customize the responses -->
+	<outbound>
+		<base />
+	</outbound>
+	<!-- Handle exceptions and customize error responses  -->
+	<on-error>
+		<base />
+		<set-variable name="logTrace" value="@{
+        context.Trace("ValidationError", $">>> Header Validation Failed : {context.LastError?.Message}");
+        return true; }" />
+	</on-error>
+</policies>

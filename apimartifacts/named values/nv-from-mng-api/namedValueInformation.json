@@ -1,0 +1,7 @@
+{
+  "properties": {
+    "displayName": "nv-from-mng-api",
+    "secret": false,
+    "value": "dummy-value"
+  }
+}

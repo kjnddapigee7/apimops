@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "path": "api",
+    "apiRevision": "1",
+    "authenticationSettings": {},
+    "isCurrent": true,
+    "displayName": "test-csv-api",
+    "protocols": [
+      "https"
+    ],
+    "serviceUrl": "https://mocktarget.apigee.net",
+    "subscriptionKeyParameterNames": {
+      "header": "Ocp-Apim-Subscription-Key",
+      "query": "subscription-key"
+    },
+    "subscriptionRequired": false
+  }
+}

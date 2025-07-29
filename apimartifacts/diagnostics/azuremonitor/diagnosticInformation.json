@@ -1,6 +1,6 @@
 {
   "properties": {
-    "loggerId": "/subscriptions/123a1fd9-8bf4-4a98-9cc2-471642cb8682/resourceGroups/apim-rg/providers/Microsoft.ApiManagement/service/apim-poc-qa-public/loggers/azuremonitor",
+    "loggerId": "/subscriptions/b70ea25b-c483-4579-9bae-cb5997d924f7/resourceGroups/azure-apim-rg/providers/Microsoft.ApiManagement/service/azure-apim-kt/loggers/azuremonitor",
     "backend": {
       "request": {
         "dataMasking": {
