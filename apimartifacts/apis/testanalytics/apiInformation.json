@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "path": "",
+    "apiRevision": "1",
+    "authenticationSettings": {},
+    "isCurrent": true,
+    "displayName": "TestAnalyticsAPI",
+    "protocols": [
+      "https"
+    ],
+    "serviceUrl": "http://mocktarget.apigee.net",
+    "subscriptionKeyParameterNames": {
+      "header": "Ocp-Apim-Subscription-Key",
+      "query": "subscription-key"
+    },
+    "subscriptionRequired": true
+  }
+}

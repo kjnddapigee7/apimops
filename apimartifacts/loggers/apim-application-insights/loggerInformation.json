@@ -1,0 +1,10 @@
+{
+  "properties": {
+    "loggerType": "applicationInsights",
+    "credentials": {
+      "instrumentationKey": "{{Logger-Credentials--6879e4cb4634611438402b8c}}"
+    },
+    "isBuffered": true,
+    "resourceId": "/subscriptions/b70ea25b-c483-4579-9bae-cb5997d924f7/resourceGroups/azure-apim-rg/providers/microsoft.insights/components/apim-application-insights"
+  }
+}

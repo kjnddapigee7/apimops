@@ -1,0 +1,5 @@
+{
+  "properties": {
+    "description": "Test Policy Fragment for Rate limiting."
+  }
+}

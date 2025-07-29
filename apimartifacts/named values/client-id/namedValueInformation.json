@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "client-id",
+    "secret": false,
+    "tags": [],
+    "value": "123456789abc"
+  }
+}

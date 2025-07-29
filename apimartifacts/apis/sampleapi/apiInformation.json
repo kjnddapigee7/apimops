@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "path": "sample",
+    "apiRevision": "1",
+    "authenticationSettings": {},
+    "isCurrent": true,
+    "displayName": "sampleapi",
+    "protocols": [
+      "https"
+    ],
+    "serviceUrl": "https://httpbin.org",
+    "subscriptionKeyParameterNames": {
+      "header": "Ocp-Apim-Subscription-Key",
+      "query": "sub-key"
+    },
+    "subscriptionRequired": false
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "scope": "/subscriptions/b70ea25b-c483-4579-9bae-cb5997d924f7/resourceGroups/azure-apim-rg/providers/Microsoft.ApiManagement/service/azure-apim-kt/products/starter",
+    "allowTracing": false,
+    "ownerId": "/subscriptions/b70ea25b-c483-4579-9bae-cb5997d924f7/resourceGroups/azure-apim-rg/providers/Microsoft.ApiManagement/service/azure-apim-kt/users/1",
+    "state": "active"
+  }
+}
